@@ -1,6 +1,6 @@
 'use client';
 import Card from "@/components/card";
-import Image from "next/image";
+import Header from "@/components/header";
 import { useEffect, useState } from "react";
 
 interface Country {
@@ -22,13 +22,9 @@ interface Country {
   }
 }
 
-
 export default function Home() {
-  const urlCountriesFlags = 'https://flagsapi.com/';
   const linkRequestuInfo: string = 'https://restcountries.com/v3.1/all?fields=';
   const requestType = 'area,capital,name,population,subregion,cca2,maps,flags';
-  const typeFlag = '/flat/';
-  const tamFlag = '64.png';
 
   const [countries, setCountries] = useState<Country[]>([]);
 
@@ -50,26 +46,30 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='flex flex-row justify-center items-centern flex-wrap gap-10 px-10' >
-      {
-        countries && (countries).map((country, index) => (
-          <Card
-            countryArea={country?.area}
-            countryName={country?.name.common}
-            countryCapital={country?.capital}
-            countryPopulation={country?.population}
-            countryRegion={country?.subregion}
-            srcImage={country?.flags?.png}
-            linkGoogleMaps={country?.maps?.googleMaps}
-            key={index} />
-        ))
-      }
+    <main className='flex flex-col justify-center items-centern flex-wrap gap-10 ' >
+      <Header />
+      <section className='flex flex-row justify-center items-centern flex-wrap gap-10 px-10'>
+        {
+          countries && (countries).map((country, index) => (
+            <Card
+              countryArea={country?.area}
+              countryName={country?.name.common}
+              countryCapital={country?.capital}
+              countryPopulation={country?.population}
+              countryRegion={country?.subregion}
+              srcImage={country?.flags?.png}
+              linkGoogleMaps={country?.maps?.googleMaps}
+              key={index} />
+          ))
+        }
 
-      {
-        !countries && (
-          <h1>Nenhum país encontrado..</h1>
-        )
-      }
+        {
+          !countries && (
+            <h1>Nenhum país encontrado..</h1>
+          )
+        }
+      </section>
+
     </main >
   );
 }
