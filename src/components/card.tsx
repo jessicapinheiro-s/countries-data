@@ -47,7 +47,7 @@ export default function Card(props: propsCard) {
                     <ul className="list-none flex flex-col">
                         <li>Capital: {Array.isArray(countryCapital) ? (countryCapital).join(',') : countryCapital}</li>
                         <li>Region: {countryRegion}</li>
-                        <li>Area: {countryArea}</li>
+                        <li>Area: {countryArea} m²  </li>
                         <li>Population: {countryPopulation}</li>
                     </ul>
                     <div className="w-full flex flex-col items-center justify-center">
