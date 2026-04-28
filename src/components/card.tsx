@@ -22,42 +22,55 @@ export default function Card(props: propsCard) {
     } = props;
 
     return (
-        <section className="border-2 rounded-2xl border-[#c7c7c7] 
-            w-full  
-            sm:w-4/12  
-            lg:w-3/12
-            xl:w-2/12
-            p-0  
-            bg-white"
-        >
-            <div className='rounded-2xl relative w-[100%] h-[200px] shadow-gray-200 shadow-2xl'>
+        <section className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+
+            {/* IMAGE */}
+            <div className="relative w-full h-48 overflow-hidden">
                 <Image
                     alt="Country Flag"
                     src={srcImage}
                     fill
-                    style={{ objectFit: 'cover', borderRadius: '5%' }}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+
+                {/* badge região */}
+                <span className="absolute top-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                    {countryRegion}
+                </span>
             </div>
 
-            <div className="p-6">
-                <div className="pb-2 border-b-2 border-[#c7c7c7]">
-                    <h2 className="text-3xl font-semibold">{countryName.slice(0, 16)}</h2>
-                </div>
-                <div className="pt-2 flex flex-col gap-4">
-                    <ul className="list-none flex flex-col">
-                        <li>Capital: {Array.isArray(countryCapital) ? (countryCapital).join(',') : countryCapital}</li>
-                        <li>Region: {countryRegion}</li>
-                        <li>Area: {countryArea} m²  </li>
-                        <li>Population: {countryPopulation}</li>
-                    </ul>
-                    <div className="w-full flex flex-col items-center justify-center">
-                        <button className="bg-[#00aae7] py-2 px-5 rounded-[5%] text-white ">
-                            <a href={linkGoogleMaps} target="_blank" rel="noopener noreferrer" className="font-">Google Maps</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {/* CONTENT */}
+            <div className="p-5 flex flex-col gap-4">
 
+                {/* TITLE */}
+                <div>
+                    <h2 className="text-lg font-bold text-slate-800 line-clamp-1">
+                        {countryName}
+                    </h2>
+                    <p className="text-xs text-slate-500">
+                        {Array.isArray(countryCapital)
+                            ? countryCapital.join(", ")
+                            : countryCapital}
+                    </p>
+                </div>
+
+                {/* INFO */}
+                <ul className="text-sm text-slate-600 space-y-1">
+                    <li><span className="font-medium text-slate-700">Area:</span> {countryArea}</li>
+                    <li><span className="font-medium text-slate-700">Population:</span> {countryPopulation}</li>
+                </ul>
+
+                {/* BUTTON */}
+                <a
+                    href={linkGoogleMaps}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium py-2 rounded-lg transition-all"
+                >
+                    Ver no mapa →
+                </a>
+
+            </div>
         </section>
     )
 }
