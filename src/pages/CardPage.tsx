@@ -3,7 +3,7 @@ import Card from "@/components/card";
 import { useEffect, useMemo, useState } from "react";
 
 interface PropsHome {
-    countries: Country[];
+    countries?: Country[];
 }
 
 export interface Country {
@@ -25,7 +25,7 @@ export interface Country {
     }
 }
 
-export default function CardPage({ countries }: PropsHome) {
+export default function CardPage({ countries = [] }: PropsHome) {
     const [optionReg, setOptionReg] = useState<string>('North America');
     const [regions, setRegions] = useState<string[]>([]);
 
@@ -42,7 +42,7 @@ export default function CardPage({ countries }: PropsHome) {
 
 
     const countrie_real_data = useMemo(() => {
-        return countries?.filter(c => c.subregion === optionReg);
+        return (countries ?? [])?.filter(c => c.subregion === optionReg);
     }, [countries, optionReg]);
 
     return (
