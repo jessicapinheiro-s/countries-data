@@ -38,7 +38,7 @@ export default function CardPage({ countries = [] }: PropsHome) {
 
             setRegions(noDuplicatedRegions?.filter(item => item).sort((a, b) => a.localeCompare(b)));
         })()
-    }, []);
+    }, [countries]);
 
 
     const countrie_real_data = useMemo(() => {
