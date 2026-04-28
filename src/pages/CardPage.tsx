@@ -32,7 +32,7 @@ export default function CardPage({ countries }: PropsHome) {
     useEffect(() => {
         (async () => {
             const regions = countries?.map(c => c.subregion);
-            let noDuplicatedRegions: string[] = [];
+            const noDuplicatedRegions: string[] = [];
 
             regions?.forEach(reg => !noDuplicatedRegions.includes(reg) ? noDuplicatedRegions.push(reg) : null);
 
