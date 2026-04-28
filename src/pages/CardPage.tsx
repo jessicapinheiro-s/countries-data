@@ -36,13 +36,13 @@ export default function CardPage({ countries }: PropsHome) {
 
             regions?.forEach(reg => !noDuplicatedRegions.includes(reg) ? noDuplicatedRegions.push(reg) : null);
 
-            setRegions(noDuplicatedRegions.filter(item => item).sort((a, b) => a.localeCompare(b)));
+            setRegions(noDuplicatedRegions?.filter(item => item).sort((a, b) => a.localeCompare(b)));
         })()
     }, []);
 
 
     const countrie_real_data = useMemo(() => {
-        return countries.filter(c => c.subregion === optionReg);
+        return countries?.filter(c => c.subregion === optionReg);
     }, [countries, optionReg]);
 
     return (
